@@ -3,7 +3,7 @@ from typing import Callable, Iterable, Self, Type, TypeVar, overload
 
 
 class Unit(ABC):
-    """Inherit from this class to create units (e.g., Sec or Min)."""
+    """Inherit from this class to create units."""
 
     @abstractmethod
     def __add__(self, other: Self) -> Self:
@@ -95,11 +95,13 @@ def create_conversion(
     """Creates a conversion function for the given types.
 
     :param type1: Given class inherited from Unit or IUnit to convert from.
-    :type type1: Type[Unit] | Type[IUnit].
+    :type type1: Type[Unit] | Type[IntUnit]
     :param type2: Given class inherited from Unit or IUnit to convert to.
-    :type type2: Type[Unit] | Type[IUnit].
+    :type type2: Type[Unit] | Type[IntUnit]
     :param rate: Multiplier factor for the conversion, i.e. type1 = 60*type2
-    :type rate: int, float."""
+    :type rate: int, float
+    :return: Function converting one unit to another.
+    :rtype: Callable[T1, T2]"""
 
     def conversion(x: _T1) -> _T2:
         return x * rate  # type: ignore
@@ -108,20 +110,22 @@ def create_conversion(
 
 
 @overload
-def strip_units(x: IntUnit) -> int:
+def strip_unit(x: IntUnit) -> int:
     ...
 
 
 @overload
-def strip_units(x: Unit) -> int | float:
+def strip_unit(x: Unit) -> int | float:
     ...
 
 
-def strip_units(x):
+def strip_unit(x):
     """Strips the unit of the given Unit or IUnit.
 
     :param x: Specified value.
-    :type x: Unit | IUnit."""
+    :type x: Unit | IntUnit
+    :return: Float or int representing the value.
+    :rtype: int | float"""
     return x  # type: ignore
 
 
@@ -139,9 +143,11 @@ def embed_unit(x, unit):
     """Sets the given value to a specified unit.
 
     :param x: Specified value.
-    :type x: int | float.
+    :type x: int | float
     :param unit: Given class inherited from Unit or IUnit.
-    :type unit: Type[Unit] | Type[IUnit]."""
+    :type unit: Type[Unit] | Type[IntUnit]
+    :return: Unit-imbued value.
+    :rtype: Unit | IntUnit"""
     return x  # type: ignore
 
 
@@ -149,5 +155,7 @@ def sum_iter(values: Iterable[_T1]) -> _T1:
     """Calculates sum of unit values in an iterable.
 
     :param values: Values which bear an unit.
-    :type: list"""
+    :type values: list
+    :return: Sum of the values.
+    :rtype: Type[Unit] | Type[IntUnit]"""
     return sum(values)  # type: ignore
