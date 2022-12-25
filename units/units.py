@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Callable, Self, Type, TypeVar, overload
+from typing import Callable, Iterable, Self, Type, TypeVar, overload
 
 
 class Unit(ABC):
@@ -143,3 +143,11 @@ def embed_unit(x, unit):
     :param unit: Given class inherited from Unit or IUnit.
     :type unit: Type[Unit] | Type[IUnit]."""
     return x  # type: ignore
+
+
+def sum_iter(values: Iterable[_T1]) -> _T1:
+    """Calculates sum of unit values in an iterable.
+
+    :param values: Values which bear an unit.
+    :type: list"""
+    return sum(values)  # type: ignore
