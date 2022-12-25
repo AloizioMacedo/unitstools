@@ -1,0 +1,8 @@
+Installation
+============
+
+To use Unitstools, install it using pip:
+
+.. code-block:: console
+
+   pip install unitstools

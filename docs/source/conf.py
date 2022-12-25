@@ -6,7 +6,14 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Units"
+import sys
+from pathlib import Path
+
+sys.path.insert(
+    0, str(Path(__file__).parent.parent.parent.joinpath("unitstools"))
+)
+
+project = "Unitstools"
 copyright = "2022, Aloizio Macedo"
 author = "Aloizio Macedo"
 release = "0.1"
@@ -14,7 +21,9 @@ release = "0.1"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [
+    "sphinx.ext.autodoc",
+]
 
 templates_path = ["_templates"]
 exclude_patterns = []

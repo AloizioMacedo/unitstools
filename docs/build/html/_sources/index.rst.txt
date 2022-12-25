@@ -3,11 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Units's documentation!
-=================================
+Welcome to Unitstools's documentation!
+======================================
+
+**Unitstools** is a Python library that helps scientists,
+programmers and enthusiats to better manage units of measurement in code via
+static typing.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
 
@@ -18,3 +22,13 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+Contents
+--------
+
+.. toctree::
+
+   usage
+   classes
+   functions
