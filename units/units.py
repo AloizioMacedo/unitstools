@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Callable, Self, Type, TypeVar, cast
+from typing import Callable, Self, Type, TypeVar
 
 T = TypeVar("T")
 U = TypeVar("U")
@@ -30,3 +30,7 @@ def create_conversion(
         return x * rate  # type: ignore
 
     return conversion
+
+
+def strip_units(x: Unit) -> int | float:
+    return x  # type: ignore
