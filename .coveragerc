@@ -1,0 +1,4 @@
+[report]
+exclude_lines =
+    \s*...\s*
+    \s*pass\s*
