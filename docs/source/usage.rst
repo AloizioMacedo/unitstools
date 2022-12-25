@@ -50,6 +50,9 @@ neither the derived classes that define the units just as in the exemple above.
 Instead, they should be used just for type hinting and type casting should be
 managed via :func:`strip_unit` and :func:`embed_unit`.
 
+Examples
+--------
+
 The following code does not raise any warnings.
 
 .. code-block:: python
