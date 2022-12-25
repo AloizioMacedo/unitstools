@@ -12,11 +12,31 @@ class Unit(ABC):
         ...
 
     @abstractmethod
+    def __rmul__(self, k: int | float) -> Self:
+        ...
+
+    @abstractmethod
     def __sub__(self, other: Self) -> Self:
         ...
 
     @abstractmethod
     def __truediv__(self, k: int) -> Self:
+        ...
+
+    @abstractmethod
+    def __lt__(self, other: Self) -> bool:
+        ...
+
+    @abstractmethod
+    def __le__(self, other: Self) -> bool:
+        ...
+
+    @abstractmethod
+    def __ge__(self, other: Self) -> bool:
+        ...
+
+    @abstractmethod
+    def __gt__(self, other: Self) -> bool:
         ...
 
 
@@ -30,11 +50,31 @@ class IntUnit(ABC):
         ...
 
     @abstractmethod
+    def __rmul__(self, k: int) -> Self:
+        ...
+
+    @abstractmethod
     def __sub__(self, other: Self) -> Self:
         ...
 
     @abstractmethod
     def __floordiv__(self, k: int) -> Self:
+        ...
+
+    @abstractmethod
+    def __lt__(self, other: Self) -> bool:
+        ...
+
+    @abstractmethod
+    def __le__(self, other: Self) -> bool:
+        ...
+
+    @abstractmethod
+    def __ge__(self, other: Self) -> bool:
+        ...
+
+    @abstractmethod
+    def __gt__(self, other: Self) -> bool:
         ...
 
 
