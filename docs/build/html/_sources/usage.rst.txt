@@ -98,3 +98,13 @@ On the other hand, Pylance raises a warning for the following code in the
 This package makes it more difficult for magic constants that actually
 have units to silently live in the code preventing things like a sustainable
 units conversion for example.
+
+
+Observations
+------------
+
+This package makes no runtime conversion. In a sense, it works similarly to the
+behavior of functions such as :func:`typing.cast`, in that at runtime "nothing"
+happens (yes, there is a function call, but it just returns the value and moves
+on). This helps keep performance of number operations instead by still using
+builtin types, while also allowing the aforementioned advantages.

@@ -275,6 +275,14 @@ managed via <a class="reference internal" href="functions.html#unitstools.strip_
 have units to silently live in the code preventing things like a sustainable
 units conversion for example.</p>
 </section>
+<section id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this heading">#</a></h2>
+<p>This package makes no runtime conversion. In a sense, it works similarly to the
+behavior of functions such as <code class="xref py py-func docutils literal notranslate"><span class="pre">typing.cast()</span></code>, in that at runtime “nothing”
+happens (yes, there is a function call, but it just returns the value and moves
+on). This helps keep performance of number operations instead by still using
+builtin types, while also allowing the aforementioned advantages.</p>
+</section>
 </section>
 
         </article>
@@ -336,6 +344,7 @@ units conversion for example.</p>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#observations">Observations</a></li>
 </ul>
 </li>
 </ul>
