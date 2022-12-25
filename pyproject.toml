@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "units"
+name = "unitstools"
 version = "0.1.0"
 description = ""
 authors = ["Aloizio Macedo <aloiziomacedo@gmail.com>"]
