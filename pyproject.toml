@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "unitstools"
-version = "0.1.1"
+version = "0.1.2"
 description = "Unitstools is a Python library that helps to manage units of measurement in code via static typing."
 authors = ["Aloizio Macedo <aloiziomacedo@gmail.com>"]
 readme = "README.md"
+documentation = "https://unitstools.readthedocs.io/"
+repository = "https://github.com/AloizioMacedo/unitstools"
 
 [tool.poetry.dependencies]
 python = "^3.7"
