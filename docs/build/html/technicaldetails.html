@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Functions" href="functions.html" /><link rel="prev" title="Usage" href="usage.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Functions" href="functions.html" />
 
     <!-- Generated with Sphinx 5.3.0 and Furo 2022.12.07 -->
-        <title>Classes - Unitstools 0.1 documentation</title>
+        <title>Technical Details - Unitstools 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -156,9 +156,9 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="technicaldetails.html">Technical Details</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Technical Details</a></li>
 </ul>
 
 </div>
@@ -193,20 +193,50 @@
           </label>
         </div>
         <article role="main">
-          <section id="classes">
-<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="unitstools.Unit">
-<span class="sig-prename descclassname"><span class="pre">unitstools.</span></span><span class="sig-name descname"><span class="pre">Unit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#unitstools.Unit" title="Permalink to this definition">#</a></dt>
-<dd><p>Inherit from this class to create units.</p>
-</dd></dl>
+          <section id="technical-details">
+<h1>Technical Details<a class="headerlink" href="#technical-details" title="Permalink to this heading">#</a></h1>
+<p>To have a summarised version of the behavior of this package, we could simply state:</p>
+<blockquote class="highlights">
+<div><p><em>We do nothing at runtime. We just fool the type checkers.</em></p>
+</div></blockquote>
+<p>For more details, read ahead.</p>
+<section id="instantiation">
+<h2>Instantiation<a class="headerlink" href="#instantiation" title="Permalink to this heading">#</a></h2>
+<p>The classes <a class="reference internal" href="classes.html#unitstools.Unit" title="unitstools.Unit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code></a> and <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a> (and their derived classes defined
+by the user) are never actually instantiated. Their instantiation produce <code class="code docutils literal notranslate"><span class="pre">ints</span></code>
+and <code class="code docutils literal notranslate"><span class="pre">floats</span></code>, as can be seen in the definitions of their <code class="xref py py-func docutils literal notranslate"><span class="pre">__new__()</span></code>
+dunder method.</p>
+<p>This should be kept in mind in order to understand that, in runtime, things
+like <code class="code docutils literal notranslate"><span class="pre">IntUnit(2)</span></code> are just <code class="code docutils literal notranslate"><span class="pre">ints</span></code>. This means that the following
+code would raise an error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Seconds</span><span class="p">(</span><span class="n">IntUnit</span><span class="p">):</span>
+    <span class="o">...</span>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="unitstools.IntUnit">
-<span class="sig-prename descclassname"><span class="pre">unitstools.</span></span><span class="sig-name descname"><span class="pre">IntUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="headerlink" href="#unitstools.IntUnit" title="Permalink to this definition">#</a></dt>
-<dd><p>Inherit from this class to create units that take integer values.</p>
-</dd></dl>
-
+<span class="n">x</span> <span class="o">=</span> <span class="n">Seconds</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Seconds</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The same observations apply, <em>mutatis mutandis</em>, to <a class="reference internal" href="functions.html#unitstools.embed_unit" title="unitstools.embed_unit"><code class="xref py py-func docutils literal notranslate"><span class="pre">embed_unit()</span></code></a> and
+its return.</p>
+</div>
+</section>
+<section id="final-comments">
+<h2>Final Comments<a class="headerlink" href="#final-comments" title="Permalink to this heading">#</a></h2>
+<p>So, to reiterate: this package does nothing at runtime (with the exception of
+the conversion functionalities, which are just multiplications at runtime).
+This is by design, choice and scope of the project. For example, if an user
+wants to define centimeters and meters, adding them will raise an error
+with Pylance (which, again, is by design). If they want to make the code
+raise no typing errors, they should convert one of them to the other by means
+of a conversion function or something similar.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are tools which provide ways to work with units at runtime, e.g.
+<a class="reference external" href="https://pint.readthedocs.io">Pint</a>. This is not the scope of unitstools.</p>
+</div>
+</section>
 </section>
 
         </article>
@@ -214,23 +244,15 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="functions.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Functions</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="usage.html">
+          
+          <a class="prev-page" href="functions.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Usage</div>
+                <div class="title">Functions</div>
                 
               </div>
             </a>
@@ -264,9 +286,9 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Classes</a><ul>
-<li><a class="reference internal" href="#unitstools.Unit"><code class="docutils literal notranslate"><span class="pre">Unit()</span></code></a></li>
-<li><a class="reference internal" href="#unitstools.IntUnit"><code class="docutils literal notranslate"><span class="pre">IntUnit()</span></code></a></li>
+<li><a class="reference internal" href="#">Technical Details</a><ul>
+<li><a class="reference internal" href="#instantiation">Instantiation</a></li>
+<li><a class="reference internal" href="#final-comments">Final Comments</a></li>
 </ul>
 </li>
 </ul>

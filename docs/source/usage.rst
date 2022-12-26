@@ -16,8 +16,8 @@ Basic Usage
 
 The fundamental objective of this package is to work in tandem with static type
 checkers in order to raise warnings in situations that may be violating
-the expected units involved in operations.
-
+the expected units involved in operations. Consider the example below as an
+illustration.
 
 .. code-block:: python
 
@@ -44,11 +44,31 @@ the expected units involved in operations.
 
 .. currentmodule:: unitstools
 
-The classes :class:`Unit` and :class:`IntUnit` should never be instantiated, and
-neither the derived classes that define the units just as in the exemple above.
+.. note::
 
-Instead, they should be used just for type hinting and type casting should be
-managed via :func:`strip_unit` and :func:`embed_unit`.
+   The classes :class:`Unit` and :class:`IntUnit` are never actually instantiated
+   (for more details, see :doc:`technicaldetails`), and neither are user-defined
+   derived classes that establish the units (see the example further below).
+   Their purpose is entirely for type hinting via their pseudo-instantiation syntax
+   and/or through :func:`strip_unit` and :func:`embed_unit`.
+
+Keep in mind  that the following are equivalent:
+
+.. code-block:: python
+
+   class Kilometers(Unit):
+      ...
+
+   x = Kilometers(100)
+
+.. code-block:: python
+
+   class Kilometers(Unit):
+      ...
+
+   x = embed_units(100, Kilometers)
+
+The user should decide which syntax to use based primarily on preference.
 
 Examples
 --------
@@ -95,16 +115,30 @@ On the other hand, Pylance raises a warning for the following code in the
       starting_time_plus_one = add_one_second(starting_time)
 
 
-This package makes it more difficult for magic constants that actually
-have units to silently live in the code preventing things like a sustainable
-units conversion for example.
+Alternatively, one could fix the code above as follows:
+
+.. code-block:: python
+
+   from unitstools import Unit
 
 
-Observations
-------------
+   class Seconds(Unit):
+      ...
 
-This package makes no runtime conversion. In a sense, it works similarly to the
-behavior of functions such as :func:`typing.cast`, in that at runtime "nothing"
-happens (yes, there is a function call, but it just returns the value and moves
-on). This helps keep performance of number operations instead by still using
-builtin types, while also allowing the aforementioned advantages.
+
+   def add_one_second(second: Seconds) -> Seconds:
+      return second + Seconds(1)
+
+
+   def main():
+      starting_time = Seconds(30)
+      starting_time_plus_one = add_one_second(starting_time)
+
+
+.. note::
+
+   This package makes no runtime conversion. In a sense, it works similarly to the
+   behavior of functions such as :func:`typing.cast`, in that at runtime "nothing"
+   happens (yes, there is a function call, but it just returns the value and moves
+   on). This helps keep performance of number operations instead by still using
+   builtin types, while also allowing the aforementioned advantages.
