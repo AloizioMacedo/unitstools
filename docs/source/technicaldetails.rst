@@ -15,11 +15,11 @@ Instantiation
 .. currentmodule:: unitstools
 
 The classes :class:`Unit` and :class:`IntUnit` (and their derived classes defined
-by the user) are never actually instantiated. Their instantiation produce :code:`ints`
+by the user) are never actually instantiated. Their instantiations produce :code:`ints`
 and :code:`floats`, as can be seen in the definitions of their :func:`__new__`
 dunder method.
 
-This should be kept in mind in order to understand that, in runtime, things
+This should be kept in mind in order to understand that, at runtime, things
 like :code:`IntUnit(2)` are just :code:`ints`. This means that the following
 code would raise an error.
 
@@ -37,8 +37,8 @@ code would raise an error.
     The same observations apply, *mutatis mutandis*, to :func:`embed_unit` and
     its return.
 
-Inherting from int (or float)
------------------------------
+Inheriting from int (or float)
+------------------------------
 
 .. currentmodule:: unitstools
 

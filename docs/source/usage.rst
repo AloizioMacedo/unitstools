@@ -66,7 +66,7 @@ Keep in mind  that the following are equivalent:
    class Kilometers(Unit):
       ...
 
-   x = embed_units(100, Kilometers)
+   x = embed_unit(100, Kilometers)
 
 The user should decide which syntax to use based primarily on preference.
 

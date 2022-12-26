@@ -203,10 +203,10 @@
 <section id="instantiation">
 <h2>Instantiation<a class="headerlink" href="#instantiation" title="Permalink to this heading">#</a></h2>
 <p>The classes <a class="reference internal" href="classes.html#unitstools.Unit" title="unitstools.Unit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code></a> and <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a> (and their derived classes defined
-by the user) are never actually instantiated. Their instantiation produce <code class="code docutils literal notranslate"><span class="pre">ints</span></code>
+by the user) are never actually instantiated. Their instantiations produce <code class="code docutils literal notranslate"><span class="pre">ints</span></code>
 and <code class="code docutils literal notranslate"><span class="pre">floats</span></code>, as can be seen in the definitions of their <code class="xref py py-func docutils literal notranslate"><span class="pre">__new__()</span></code>
 dunder method.</p>
-<p>This should be kept in mind in order to understand that, in runtime, things
+<p>This should be kept in mind in order to understand that, at runtime, things
 like <code class="code docutils literal notranslate"><span class="pre">IntUnit(2)</span></code> are just <code class="code docutils literal notranslate"><span class="pre">ints</span></code>. This means that the following
 code would raise an error.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Seconds</span><span class="p">(</span><span class="n">IntUnit</span><span class="p">):</span>
@@ -222,8 +222,8 @@ code would raise an error.</p>
 its return.</p>
 </div>
 </section>
-<section id="inherting-from-int-or-float">
-<h2>Inherting from int (or float)<a class="headerlink" href="#inherting-from-int-or-float" title="Permalink to this heading">#</a></h2>
+<section id="inheriting-from-int-or-float">
+<h2>Inheriting from int (or float)<a class="headerlink" href="#inheriting-from-int-or-float" title="Permalink to this heading">#</a></h2>
 <p>A reasonable suggestion would be to have <a class="reference internal" href="classes.html#unitstools.Unit" title="unitstools.Unit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code></a> (resp. <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a>)
 inherit from <code class="code docutils literal notranslate"><span class="pre">float</span></code> (resp. <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>). For instance, this would make
 the builtin <code class="xref py py-func docutils literal notranslate"><span class="pre">sum()</span></code> function not raise a warning.</p>
@@ -313,7 +313,7 @@ of a conversion function or something similar.</p>
             <ul>
 <li><a class="reference internal" href="#">Technical Details</a><ul>
 <li><a class="reference internal" href="#instantiation">Instantiation</a></li>
-<li><a class="reference internal" href="#inherting-from-int-or-float">Inherting from int (or float)</a></li>
+<li><a class="reference internal" href="#inheriting-from-int-or-float">Inheriting from int (or float)</a></li>
 <li><a class="reference internal" href="#final-comments">Final Comments</a></li>
 </ul>
 </li>
