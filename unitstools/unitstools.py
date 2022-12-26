@@ -1,38 +1,41 @@
 from abc import ABC
-from typing import Callable, Iterable, Self, Type, TypeVar, overload
+from typing import Callable, Iterable, Type, TypeVar, Union, overload
+
+TUnit = TypeVar("TUnit", bound="Unit")
+TIntUnit = TypeVar("TIntUnit", bound="IntUnit")
 
 
 class Unit(ABC):
     """Inherit from this class to create units."""
 
-    def __new__(cls: type[Self], x: float | int) -> Self:
+    def __new__(cls: type[TUnit], x: Union[int, float]) -> TUnit:
         return x  # type: ignore
 
-    def __add__(self, other: Self) -> Self:
+    def __add__(self: TUnit, other: TUnit) -> TUnit:
         ...
 
-    def __mul__(self, k: int | float) -> Self:
+    def __mul__(self: TUnit, k: Union[int, float]) -> TUnit:
         ...
 
-    def __rmul__(self, k: int | float) -> Self:
+    def __rmul__(self: TUnit, k: Union[int, float]) -> TUnit:
         ...
 
-    def __sub__(self, other: Self) -> Self:
+    def __sub__(self: TUnit, other: TUnit) -> TUnit:
         ...
 
-    def __truediv__(self, k: int) -> Self:
+    def __truediv__(self: TUnit, k: int) -> TUnit:
         ...
 
-    def __lt__(self, other: Self) -> bool:
+    def __lt__(self: TUnit, other: TUnit) -> bool:
         ...
 
-    def __le__(self, other: Self) -> bool:
+    def __le__(self: TUnit, other: TUnit) -> bool:
         ...
 
-    def __ge__(self, other: Self) -> bool:
+    def __ge__(self: TUnit, other: TUnit) -> bool:
         ...
 
-    def __gt__(self, other: Self) -> bool:
+    def __gt__(self: TUnit, other: TUnit) -> bool:
         ...
 
     def __int__(self) -> int:
@@ -45,34 +48,34 @@ class Unit(ABC):
 class IntUnit(ABC):
     """Inherit from this class to create units that take integer values."""
 
-    def __new__(cls: type[Self], x: int) -> Self:
+    def __new__(cls: type[TIntUnit], x: int) -> TIntUnit:
         return x  # type: ignore
 
-    def __add__(self, other: Self) -> Self:
+    def __add__(self: TIntUnit, other: TIntUnit) -> TIntUnit:
         ...
 
-    def __mul__(self, k: int) -> Self:
+    def __mul__(self: TIntUnit, k: int) -> TIntUnit:
         ...
 
-    def __rmul__(self, k: int) -> Self:
+    def __rmul__(self: TIntUnit, k: int) -> TIntUnit:
         ...
 
-    def __sub__(self, other: Self) -> Self:
+    def __sub__(self: TIntUnit, other: TIntUnit) -> TIntUnit:
         ...
 
-    def __floordiv__(self, k: int) -> Self:
+    def __floordiv__(self: TIntUnit, k: int) -> TIntUnit:
         ...
 
-    def __lt__(self, other: Self) -> bool:
+    def __lt__(self: TIntUnit, other: TIntUnit) -> bool:
         ...
 
-    def __le__(self, other: Self) -> bool:
+    def __le__(self: TIntUnit, other: TIntUnit) -> bool:
         ...
 
-    def __ge__(self, other: Self) -> bool:
+    def __ge__(self: TIntUnit, other: TIntUnit) -> bool:
         ...
 
-    def __gt__(self, other: Self) -> bool:
+    def __gt__(self: TIntUnit, other: TIntUnit) -> bool:
         ...
 
     def __int__(self) -> int:
@@ -82,15 +85,15 @@ class IntUnit(ABC):
         ...
 
 
-_T1 = TypeVar("_T1", bound=IntUnit | Unit)
-_T2 = TypeVar("_T2", bound=IntUnit | Unit)
+_T1 = TypeVar("_T1", bound=Union[IntUnit, Unit])
+_T2 = TypeVar("_T2", bound=Union[IntUnit, Unit])
 
 _U = TypeVar("_U", bound=Unit)
 _IU = TypeVar("_IU", bound=IntUnit)
 
 
 def create_conversion(
-    type1: Type[_T1], type2: Type[_T2], rate: int | float
+    type1: Type[_T1], type2: Type[_T2], rate: Union[int, float]
 ) -> Callable[[_T1], _T2]:
     """Creates a conversion function for the given types.
 
@@ -121,7 +124,7 @@ def strip_unit(x: IntUnit) -> int:
 
 
 @overload
-def strip_unit(x: Unit) -> int | float:
+def strip_unit(x: Unit) -> Union[int, float]:
     ...
 
 
