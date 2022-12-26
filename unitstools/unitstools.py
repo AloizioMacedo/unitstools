@@ -35,6 +35,12 @@ class Unit(ABC):
     def __gt__(self, other: Self) -> bool:
         ...
 
+    def __int__(self) -> int:
+        ...
+
+    def __float__(self) -> float:
+        ...
+
 
 class IntUnit(ABC):
     """Inherit from this class to create units that take integer values."""
@@ -67,6 +73,12 @@ class IntUnit(ABC):
         ...
 
     def __gt__(self, other: Self) -> bool:
+        ...
+
+    def __int__(self) -> int:
+        ...
+
+    def __float__(self) -> float:
         ...
 
 
