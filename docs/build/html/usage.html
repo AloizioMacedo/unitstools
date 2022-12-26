@@ -264,11 +264,11 @@ and/or through <a class="reference internal" href="functions.html#unitstools.str
 
 
 <span class="k">def</span> <span class="nf">add_one_second</span><span class="p">(</span><span class="n">second</span><span class="p">:</span> <span class="n">Seconds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Seconds</span><span class="p">:</span>
-   <span class="k">return</span> <span class="n">second</span> <span class="o">+</span> <span class="n">embed_unit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Seconds</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">second</span> <span class="o">+</span> <span class="n">Seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-   <span class="n">starting_time</span> <span class="o">=</span> <span class="n">embed_unit</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">Seconds</span><span class="p">)</span>
+   <span class="n">starting_time</span> <span class="o">=</span> <span class="n">Seconds</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
    <span class="n">starting_time_plus_one</span> <span class="o">=</span> <span class="n">add_one_second</span><span class="p">(</span><span class="n">starting_time</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -287,11 +287,11 @@ and/or through <a class="reference internal" href="functions.html#unitstools.str
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-   <span class="n">starting_time</span> <span class="o">=</span> <span class="n">embed_unit</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">Seconds</span><span class="p">)</span>
+   <span class="n">starting_time</span> <span class="o">=</span> <span class="n">Seconds</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
    <span class="n">starting_time_plus_one</span> <span class="o">=</span> <span class="n">add_one_second</span><span class="p">(</span><span class="n">starting_time</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Alternatively, one could fix the code above as follows:</p>
+<p>An alternative way to write the correct code is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unitstools</span> <span class="kn">import</span> <span class="n">Unit</span>
 
 
@@ -300,11 +300,11 @@ and/or through <a class="reference internal" href="functions.html#unitstools.str
 
 
 <span class="k">def</span> <span class="nf">add_one_second</span><span class="p">(</span><span class="n">second</span><span class="p">:</span> <span class="n">Seconds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Seconds</span><span class="p">:</span>
-   <span class="k">return</span> <span class="n">second</span> <span class="o">+</span> <span class="n">Seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">second</span> <span class="o">+</span> <span class="n">embed_unit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Seconds</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-   <span class="n">starting_time</span> <span class="o">=</span> <span class="n">Seconds</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+   <span class="n">starting_time</span> <span class="o">=</span> <span class="n">embed_unit</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">Seconds</span><span class="p">)</span>
    <span class="n">starting_time_plus_one</span> <span class="o">=</span> <span class="n">add_one_second</span><span class="p">(</span><span class="n">starting_time</span><span class="p">)</span>
 </pre></div>
 </div>

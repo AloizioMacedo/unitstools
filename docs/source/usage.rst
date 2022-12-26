@@ -85,11 +85,11 @@ The following code does not raise any warnings.
 
 
    def add_one_second(second: Seconds) -> Seconds:
-      return second + embed_unit(1, Seconds)
+      return second + Seconds(1)
 
 
    def main():
-      starting_time = embed_unit(30, Seconds)
+      starting_time = Seconds(30)
       starting_time_plus_one = add_one_second(starting_time)
 
 
@@ -111,11 +111,12 @@ On the other hand, Pylance raises a warning for the following code in the
 
 
    def main():
-      starting_time = embed_unit(30, Seconds)
+      starting_time = Seconds(30)
       starting_time_plus_one = add_one_second(starting_time)
 
 
-Alternatively, one could fix the code above as follows:
+An alternative way to write the correct code is as follows:
+
 
 .. code-block:: python
 
@@ -127,13 +128,12 @@ Alternatively, one could fix the code above as follows:
 
 
    def add_one_second(second: Seconds) -> Seconds:
-      return second + Seconds(1)
+      return second + embed_unit(1, Seconds)
 
 
    def main():
-      starting_time = Seconds(30)
+      starting_time = embed_unit(30, Seconds)
       starting_time_plus_one = add_one_second(starting_time)
-
 
 .. note::
 
