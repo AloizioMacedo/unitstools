@@ -12,16 +12,14 @@ from pathlib import Path
 try:
     import unitstools
 except ImportError:
-    pass
-
-sys.path.insert(
-    0, str(Path(__file__).parent.parent.parent.joinpath("unitstools"))
-)
+    sys.path.insert(
+        0, str(Path(__file__).parent.parent.parent.joinpath("unitstools"))
+    )
 
 project = "Unitstools"
 copyright = "2022, Aloizio Macedo"
 author = "Aloizio Macedo"
-release = "0.1"
+release = "0.1.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

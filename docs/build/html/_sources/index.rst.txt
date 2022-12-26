@@ -7,7 +7,7 @@ Welcome to Unitstools's documentation!
 ======================================
 
 **Unitstools** is a Python library that helps scientists,
-programmers and enthusiats to better manage units of measurement in code via
+programmers and enthusiasts to manage units of measurement in code via
 static typing.
 
 This package makes it more difficult for magic constants that actually
