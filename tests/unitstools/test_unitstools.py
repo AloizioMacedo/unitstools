@@ -21,11 +21,11 @@ class IntSec(IntUnit):
 
 def test_conversion():
     convert = create_conversion(Min, Sec, 60)
-    x = cast(Min, 1)
+    x = Min(1)
     assert convert(x) == 60
 
 
 def test_int_conversion():
     convert = create_conversion(IntMin, IntSec, 60)
-    x = cast(IntMin, 1)
+    x = IntMin(1)
     assert convert(x) // 3 == 20
