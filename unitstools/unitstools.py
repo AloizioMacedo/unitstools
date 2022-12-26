@@ -1,43 +1,37 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import Callable, Iterable, Self, Type, TypeVar, overload
 
 
 class Unit(ABC):
     """Inherit from this class to create units."""
 
-    @abstractmethod
+    def __new__(cls: type[Self], x: float | int) -> Self:
+        return x  # type: ignore
+
     def __add__(self, other: Self) -> Self:
         ...
 
-    @abstractmethod
     def __mul__(self, k: int | float) -> Self:
         ...
 
-    @abstractmethod
     def __rmul__(self, k: int | float) -> Self:
         ...
 
-    @abstractmethod
     def __sub__(self, other: Self) -> Self:
         ...
 
-    @abstractmethod
     def __truediv__(self, k: int) -> Self:
         ...
 
-    @abstractmethod
     def __lt__(self, other: Self) -> bool:
         ...
 
-    @abstractmethod
     def __le__(self, other: Self) -> bool:
         ...
 
-    @abstractmethod
     def __ge__(self, other: Self) -> bool:
         ...
 
-    @abstractmethod
     def __gt__(self, other: Self) -> bool:
         ...
 
@@ -45,39 +39,33 @@ class Unit(ABC):
 class IntUnit(ABC):
     """Inherit from this class to create units that take integer values."""
 
-    @abstractmethod
+    def __new__(cls: type[Self], x: int) -> Self:
+        return x  # type: ignore
+
     def __add__(self, other: Self) -> Self:
         ...
 
-    @abstractmethod
     def __mul__(self, k: int) -> Self:
         ...
 
-    @abstractmethod
     def __rmul__(self, k: int) -> Self:
         ...
 
-    @abstractmethod
     def __sub__(self, other: Self) -> Self:
         ...
 
-    @abstractmethod
     def __floordiv__(self, k: int) -> Self:
         ...
 
-    @abstractmethod
     def __lt__(self, other: Self) -> bool:
         ...
 
-    @abstractmethod
     def __le__(self, other: Self) -> bool:
         ...
 
-    @abstractmethod
     def __ge__(self, other: Self) -> bool:
         ...
 
-    @abstractmethod
     def __gt__(self, other: Self) -> bool:
         ...
 
