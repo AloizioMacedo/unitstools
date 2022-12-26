@@ -9,6 +9,11 @@
 import sys
 from pathlib import Path
 
+try:
+    import unitstools
+except ImportError:
+    pass
+
 sys.path.insert(
     0, str(Path(__file__).parent.parent.parent.joinpath("unitstools"))
 )
