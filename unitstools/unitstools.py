@@ -8,7 +8,7 @@ TIntUnit = TypeVar("TIntUnit", bound="IntUnit")
 class Unit(ABC):
     """Inherit from this class to create units."""
 
-    def __new__(cls: type[TUnit], x: Union[int, float]) -> TUnit:
+    def __new__(cls: Type[TUnit], x: Union[int, float]) -> TUnit:
         return x  # type: ignore
 
     def __add__(self: TUnit, other: TUnit) -> TUnit:
@@ -48,7 +48,7 @@ class Unit(ABC):
 class IntUnit(ABC):
     """Inherit from this class to create units that take integer values."""
 
-    def __new__(cls: type[TIntUnit], x: int) -> TIntUnit:
+    def __new__(cls: Type[TIntUnit], x: int) -> TIntUnit:
         return x  # type: ignore
 
     def __add__(self: TIntUnit, other: TIntUnit) -> TIntUnit:
