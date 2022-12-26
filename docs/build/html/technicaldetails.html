@@ -222,6 +222,31 @@ code would raise an error.</p>
 its return.</p>
 </div>
 </section>
+<section id="inherting-from-int-or-float">
+<h2>Inherting from int (or float)<a class="headerlink" href="#inherting-from-int-or-float" title="Permalink to this heading">#</a></h2>
+<p>A reasonable suggestion would be to have <a class="reference internal" href="classes.html#unitstools.Unit" title="unitstools.Unit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unit</span></code></a> (resp. <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a>)
+inherit from <code class="code docutils literal notranslate"><span class="pre">float</span></code> (resp. <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>). For instance, this would make
+the builtin <code class="xref py py-func docutils literal notranslate"><span class="pre">sum()</span></code> function not raise a warning.</p>
+<p>However, this pushes back situations where problems may live. For example,
+summing a <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a> with an <code class="code docutils literal notranslate"><span class="pre">int</span></code> would not raise a warning. Instead,
+the sum will become an <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, and this would probably result in a warning
+only further down the code (for example, if the return type was an <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a>).</p>
+<p>Not only is this inconvenient, but we also want to deliberately consider the sum
+of something that has a unit with something that does not have to be an “error”.</p>
+<p>However, if the user thinks that this behavior is desirable, it suffices to
+make their units inherit from <code class="code docutils literal notranslate"><span class="pre">float</span></code>/<code class="code docutils literal notranslate"><span class="pre">int</span></code> like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unitstools</span> <span class="kn">import</span> <span class="n">IntUnit</span>
+
+<span class="k">class</span> <span class="nc">Seconds</span><span class="p">(</span><span class="n">IntUnit</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important for <a class="reference internal" href="classes.html#unitstools.IntUnit" title="unitstools.IntUnit"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntUnit</span></code></a> be the first class of the inheritance
+due to how Python’s resolution order works.</p>
+</div>
+</section>
 <section id="final-comments">
 <h2>Final Comments<a class="headerlink" href="#final-comments" title="Permalink to this heading">#</a></h2>
 <p>So, to reiterate: this package does nothing at runtime (with the exception of
@@ -288,6 +313,7 @@ of a conversion function or something similar.</p>
             <ul>
 <li><a class="reference internal" href="#">Technical Details</a><ul>
 <li><a class="reference internal" href="#instantiation">Instantiation</a></li>
+<li><a class="reference internal" href="#inherting-from-int-or-float">Inherting from int (or float)</a></li>
 <li><a class="reference internal" href="#final-comments">Final Comments</a></li>
 </ul>
 </li>
